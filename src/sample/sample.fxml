@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
@@ -24,25 +25,29 @@
                         <Insets left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
                 </Slider>
+            <Label text="Vietor" />
+            <Slider fx:id="vietor" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" min="-10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#reset" text="RESET" />
             </children>
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor></VBox>
     </right>
     <center>
-        <AnchorPane fx:id="panel" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
+      <AnchorPane fx:id="panel" BorderPane.alignment="CENTER">
+         <children>
                 <ImageView fx:id="kriz" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../ZámernýKríž.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="611.0" fitWidth="631.0" layoutX="22.0" layoutY="-17.0" onMouseClicked="#pifpaf" onMouseMoved="#mouseMove" opacity="0.41" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="611.0" fitWidth="631.0" onMouseClicked="#pifpaf" onMouseMoved="#mouseMove" opacity="0.41" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../terc.jpg" />
                     </image>
                 </ImageView>
-            </children></AnchorPane>
+         </children>
+      </AnchorPane>
     </center>
     <cursor>
         <Cursor fx:constant="NONE" />

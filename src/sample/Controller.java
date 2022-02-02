@@ -1,15 +1,20 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -18,6 +23,8 @@ public class Controller implements Initializable{
     ImageView kriz;
     @FXML
     Slider unava;
+    @FXML
+    Slider vietor;
     @FXML
     AnchorPane panel;
 
@@ -62,7 +69,24 @@ public class Controller implements Initializable{
     }
 
     public void pifpaf(MouseEvent mouseEvent) {
-        Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2,kriz.getY()+kriz.getFitHeight()/2,10);
+        double offset = galtonBoard(0,10) * (vietor.getValue() * 5);
+
+        Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,10);
+        c.setStroke(Color.RED);
         panel.getChildren().add(c);
     }
+
+    public void reset()
+    {
+        ObservableList<Node> children = panel.getChildren();
+
+        for (Node node: children)
+        {
+            if (node instanceof Circle)
+            {
+                panel.getChildren().remove(node);
+            }
+        }
+    }
+
 }
