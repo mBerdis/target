@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <right>
+        <VBox prefHeight="649.0" prefWidth="118.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Vyčerpanosť">
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Slider fx:id="unava" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="10.0" />
+                    </VBox.margin>
+                </Slider>
+            </children>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor></VBox>
+    </right>
+    <center>
+        <AnchorPane fx:id="panel" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="kriz" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ZámernýKríž.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="611.0" fitWidth="631.0" layoutX="22.0" layoutY="-17.0" onMouseClicked="#pifpaf" onMouseMoved="#mouseMove" opacity="0.41" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../terc.jpg" />
+                    </image>
+                </ImageView>
+            </children></AnchorPane>
+    </center>
+    <cursor>
+        <Cursor fx:constant="NONE" />
+    </cursor>
+</BorderPane>
