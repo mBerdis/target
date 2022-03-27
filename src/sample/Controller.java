@@ -1,10 +1,8 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -21,9 +19,9 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
     @FXML
-    ImageView kriz;
+    ImageView pointer;
     @FXML
-    Slider unava;
+    Slider tiredness;
     @FXML
     Slider wind;
     @FXML
@@ -49,8 +47,8 @@ public class Controller implements Initializable{
         //x_nová = x_stará*0.9+x_nová_nameraná*0.1;      filtrácia
         //x_nová = x_stará+(x_nová_nameraná-x_stará)*0.1
 
-        xmysi=mouseEvent.getSceneX()-kriz.getFitWidth()/2;           //xmysi
-        ymysi=mouseEvent.getSceneY()-kriz.getFitHeight()/2;          //ymysi
+        xmysi=mouseEvent.getSceneX()- pointer.getFitWidth()/2;           //xmysi
+        ymysi=mouseEvent.getSceneY()- pointer.getFitHeight()/2;          //ymysi
     }
 
 
@@ -65,12 +63,12 @@ public class Controller implements Initializable{
                     xmysi +=  rn.nextInt(2*rozptyl)-rozptyl;
                     ymysi +=  rn.nextInt(2*rozptyl)-rozptyl;
     */
-                    xmysi = xmysi + galtonBoard(0,10) * (unava.getValue()+1);
-                    ymysi = ymysi + galtonBoard(0,10) * (unava.getValue()+1);
+                    xmysi = xmysi + galtonBoard(0,10) * (tiredness.getValue()+1);
+                    ymysi = ymysi + galtonBoard(0,10) * (tiredness.getValue()+1);
 
                 }
-                kriz.setX(kriz.getX()*0.95+xmysi*0.05);
-                kriz.setY(kriz.getY()*0.95+ymysi*0.05);
+                pointer.setX(pointer.getX()*0.95+xmysi*0.05);
+                pointer.setY(pointer.getY()*0.95+ymysi*0.05);
             }
         }.start();
     }
@@ -78,7 +76,7 @@ public class Controller implements Initializable{
     public void shoot(MouseEvent mouseEvent) {
         double offset = galtonBoard(0,10) * (wind.getValue() * 5);
 
-        Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,7);
+        Circle c = new Circle(pointer.getX()+ pointer.getFitWidth()/2 + offset, pointer.getY()+ pointer.getFitHeight()/2 + offset,7);
         c.setStroke(Color.RED);
         bullets.add(c);
         panel.getChildren().add(c);

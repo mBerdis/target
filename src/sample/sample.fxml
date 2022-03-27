@@ -21,7 +21,7 @@
                         <Insets left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
                 </Label>
-                <Slider fx:id="unava" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                <Slider fx:id="tiredness" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
                     <VBox.margin>
                         <Insets left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
@@ -53,7 +53,7 @@
                         <Image url="@../target.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="kriz" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="pointer" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../ZámernýKríž.png" />
                     </image>
