@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,11 +28,16 @@ public class Controller implements Initializable{
     @FXML
     Slider vietor;
     @FXML
-    Pane panel;
+    AnchorPane panel;
+    @FXML
+    ImageView target;
+    @FXML
+    TextArea textarea;
 
     int perioda=0;
     double xmysi,ymysi,xmysiFix,ymysiFix;
     Random rn=new Random();
+    int shot = 0;
 
     public int galtonBoard(int pozicia, int hladina){
         if (hladina==0) return pozicia;
@@ -75,6 +81,38 @@ public class Controller implements Initializable{
         Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,7);
         c.setStroke(Color.RED);
         panel.getChildren().add(c);
+        shot++;
+
+        double stredX = (target.getX()+target.getFitWidth()/2);
+        double stredY = (target.getY()+target.getFitHeight()/2);
+        double distance = Math.sqrt(Math.pow(stredX-c.getCenterX(),2) + Math.pow(stredY-c.getCenterY(),2));
+        double oneCircleWidth = target.getFitWidth()/2/10;
+
+        if (distance <= oneCircleWidth) updateTextArea(shot,10);
+        else
+        if (distance > oneCircleWidth && distance <= 2 * oneCircleWidth) updateTextArea(shot,9);
+        else
+        if (distance > 2 * oneCircleWidth && distance <= 3 * oneCircleWidth) updateTextArea(shot,8);
+        else
+        if (distance > 3 * oneCircleWidth && distance <= 4 * oneCircleWidth) updateTextArea(shot,7);
+        else
+        if (distance > 4 * oneCircleWidth && distance <= 5 * oneCircleWidth) updateTextArea(shot,6);
+        else
+        if (distance > 5 * oneCircleWidth && distance <= 6 * oneCircleWidth) updateTextArea(shot,5);
+        else
+        if (distance > 6 * oneCircleWidth && distance <= 7 * oneCircleWidth) updateTextArea(shot,4);
+        else
+        if (distance > 7 * oneCircleWidth && distance <= 8 * oneCircleWidth) updateTextArea(shot,3);
+        else
+        if (distance > 8 * oneCircleWidth && distance <= 9 * oneCircleWidth) updateTextArea(shot,2);
+        else
+        if (distance > 9 * oneCircleWidth && distance <= 10 * oneCircleWidth) updateTextArea(shot,1);
+        else
+            updateTextArea(shot,0);
+
+    }
+    private void updateTextArea(int shot, int points){
+        textarea.appendText(shot +". strela: " + points +" bodov \n");
     }
 
     public void reset()
