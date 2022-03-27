@@ -10,13 +10,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -26,7 +25,7 @@ public class Controller implements Initializable{
     @FXML
     Slider unava;
     @FXML
-    Slider vietor;
+    Slider wind;
     @FXML
     AnchorPane panel;
     @FXML
@@ -38,6 +37,7 @@ public class Controller implements Initializable{
     double xmysi,ymysi,xmysiFix,ymysiFix;
     Random rn=new Random();
     int shot = 0;
+    List<Circle> bullets = new ArrayList<>();
 
     public int galtonBoard(int pozicia, int hladina){
         if (hladina==0) return pozicia;
@@ -75,11 +75,12 @@ public class Controller implements Initializable{
         }.start();
     }
 
-    public void pifpaf(MouseEvent mouseEvent) {
-        double offset = galtonBoard(0,10) * (vietor.getValue() * 5);
+    public void shoot(MouseEvent mouseEvent) {
+        double offset = galtonBoard(0,10) * (wind.getValue() * 5);
 
         Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,7);
         c.setStroke(Color.RED);
+        bullets.add(c);
         panel.getChildren().add(c);
         shot++;
 
@@ -117,15 +118,12 @@ public class Controller implements Initializable{
 
     public void reset()
     {
-        ObservableList<Node> children = panel.getChildren();
-
-        for (Node node: children)
+        for (Circle c : bullets)
         {
-            if (node instanceof Circle)
-            {
-                panel.getChildren().remove(node);
-            }
+            panel.getChildren().remove(c);
         }
+        textarea.clear();
+        shot = 0;
     }
 
 }
