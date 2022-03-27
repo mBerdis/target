@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -37,26 +36,23 @@
             <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
          </padding></VBox>
     </right>
-    <center>
-      <AnchorPane fx:id="panel" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+    <cursor>
+        <Cursor fx:constant="NONE" />
+    </cursor>
+   <center>
+      <AnchorPane fx:id="panel" maxHeight="650.4" maxWidth="632.8" onMouseClicked="#pifpaf" onMouseMoved="#mouseMove" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+                <ImageView fitHeight="452.0" fitWidth="452.0" layoutX="100.0" layoutY="100.0" opacity="0.41" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="107.0">
+                    <image>
+                        <Image url="@../target.png" />
+                    </image>
+                </ImageView>
                 <ImageView fx:id="kriz" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../ZámernýKríž.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="590.0" fitWidth="582.0" layoutX="50.0" layoutY="30.0" onMouseClicked="#pifpaf" onMouseMoved="#mouseMove" opacity="0.41" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../target.png" />
-                    </image>
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis>
-                </ImageView>
          </children>
       </AnchorPane>
-    </center>
-    <cursor>
-        <Cursor fx:constant="NONE" />
-    </cursor>
+   </center>
 </BorderPane>

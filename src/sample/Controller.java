@@ -9,6 +9,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -26,7 +27,7 @@ public class Controller implements Initializable{
     @FXML
     Slider vietor;
     @FXML
-    AnchorPane panel;
+    Pane panel;
 
     int perioda=0;
     double xmysi,ymysi,xmysiFix,ymysiFix;
@@ -71,7 +72,7 @@ public class Controller implements Initializable{
     public void pifpaf(MouseEvent mouseEvent) {
         double offset = galtonBoard(0,10) * (vietor.getValue() * 5);
 
-        Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,10);
+        Circle c = new Circle(kriz.getX()+kriz.getFitWidth()/2 + offset,kriz.getY()+kriz.getFitHeight()/2 + offset,7);
         c.setStroke(Color.RED);
         panel.getChildren().add(c);
     }
