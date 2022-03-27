@@ -14,9 +14,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <right>
-        <VBox prefHeight="650.0" prefWidth="210.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="650.0" prefWidth="210.0" style="-fx-background-color: #262626;" BorderPane.alignment="CENTER">
             <children>
-                <Label text="Vyčerpanosť">
+                <Label text="Vyčerpanosť" textFill="WHITE">
                     <VBox.margin>
                         <Insets left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
@@ -26,7 +26,7 @@
                         <Insets left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
                 </Slider>
-            <Label text="Vietor" />
+            <Label text="Vietor" textFill="WHITE" />
             <Slider fx:id="vietor" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" min="-10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#reset" text="RESET" />
             </children>
@@ -38,7 +38,7 @@
          </padding></VBox>
     </right>
     <center>
-      <AnchorPane fx:id="panel" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="panel" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
                 <ImageView fx:id="kriz" fitHeight="82.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                     <image>
