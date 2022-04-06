@@ -28,6 +28,8 @@
                 </Slider>
             <Label style="-fx-font-weight: bold;" text="Vietor" textFill="WHITE" />
             <Slider fx:id="wind" blockIncrement="1.0" majorTickUnit="5.0" max="10.0" min="-10.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Label style="-fx-font-weight: bold;" text="Počet striel" textFill="WHITE" />
+            <Slider fx:id="numberOfShots" blockIncrement="1.0" majorTickUnit="5.0" max="30.0" min="1.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#reset" text="RESET" />
             <TextArea fx:id="textarea" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-font-weight: bold;">
                <VBox.margin>

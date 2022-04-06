@@ -25,12 +25,15 @@ public class Controller implements Initializable{
     @FXML
     Slider wind;
     @FXML
+    Slider numberOfShots;
+    @FXML
     AnchorPane panel;
     @FXML
     ImageView target;
     @FXML
     TextArea textarea;
 
+    AnchorPane clearPane;
     int perioda=0;
     double xmysi,ymysi,xmysiFix,ymysiFix;
     Random rn=new Random();
@@ -71,9 +74,21 @@ public class Controller implements Initializable{
                 pointer.setY(pointer.getY()*0.95+ymysi*0.05);
             }
         }.start();
+
+        clearPane = panel;
     }
 
     public void shoot(MouseEvent mouseEvent) {
+        if (gameEndedCheck())
+        {
+            // game has ended, disable shooting
+            pointer.setVisible(false);
+
+            // show stats
+
+            return;
+        }
+
         double offset = galtonBoard(0,10) * (wind.getValue() * 5);
 
         Circle c = new Circle(pointer.getX()+ pointer.getFitWidth()/2 + offset, pointer.getY()+ pointer.getFitHeight()/2 + offset,7);
@@ -120,8 +135,22 @@ public class Controller implements Initializable{
         {
             panel.getChildren().remove(c);
         }
+        pointer.setVisible(true);
         textarea.clear();
         shot = 0;
     }
 
+    private boolean gameEndedCheck()
+    {
+        int allShots = (int) numberOfShots.getValue();
+
+        if (shot >= allShots)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
