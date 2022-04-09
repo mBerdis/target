@@ -114,7 +114,7 @@ public class simulatorController implements Initializable{
                 };
     }
 
-    public void shoot(MouseEvent mouseEvent) {
+    public void shoot() {
         String windDirection = generateWindDirection();
 
         int windOffsetX = 0;
@@ -169,7 +169,7 @@ public class simulatorController implements Initializable{
         {
             // game has ended, disable shooting
             pointer.setVisible(false);
-
+            panel.setOnMouseClicked(null);
             // show stats
 
             return;
@@ -189,6 +189,13 @@ public class simulatorController implements Initializable{
         pointer.setVisible(true);
         textarea.clear();
         shot = 0;
+        panel.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override public void handle(MouseEvent e)
+            {
+                shoot();
+            }
+        });
     }
 
     private boolean gameEndedCheck()
