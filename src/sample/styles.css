@@ -11,3 +11,6 @@
     -fx-background-radius: 0;
     -fx-background-color: #172332;
 }
+.textInput{
+    -fx-text-fill: white;
+}

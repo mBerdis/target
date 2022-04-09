@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,8 @@ public class simulatorController implements Initializable{
     VBox settings;
     @FXML
     Button switchBtn;
+    @FXML
+    TextField nameInput;
 
     String windDirection = "NORTH";
 
@@ -203,6 +206,7 @@ public class simulatorController implements Initializable{
         }
         pointer.setVisible(true);
         textarea.clear();
+        nameInput.clear();
         shot = 0;
         panel.setOnMouseClicked(new EventHandler<MouseEvent>()
         {

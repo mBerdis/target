@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,12 +41,17 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </TextArea>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="193.0">
                <children>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #FF740A; -fx-background-radius: 0; -fx-font-weight: bold; -fx-font-size: 14;" text="Reset" textFill="WHITE">
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#reset" prefHeight="31.0" style="-fx-background-color: #FF740A; -fx-background-radius: 0; -fx-font-weight: bold; -fx-font-size: 14;" text="Reset" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <TextField fx:id="nameInput" prefHeight="31.2" prefWidth="100.0" promptText="Meno" style="-fx-background-radius: 0; -fx-font-weight: bold; -fx-border-width: 2; -fx-border-color: #172332; -fx-background-color: transparent;" styleClass="textInput">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
