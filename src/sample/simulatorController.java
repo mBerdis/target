@@ -103,6 +103,17 @@ public class simulatorController implements Initializable{
         clearPane = panel;
     }
 
+    public String generateWindDirection()
+    {
+        return switch ((int) (Math.random() * 4))
+                {
+                    case 0 -> "NORTH";
+                    case 1 -> "EAST";
+                    case 2 -> "WEST";
+                    default -> "SOUTH";
+                };
+    }
+
     public void shoot(MouseEvent mouseEvent) {
         if (gameEndedCheck())
         {
@@ -114,9 +125,24 @@ public class simulatorController implements Initializable{
             return;
         }
 
+        String windDirection = generateWindDirection();
+
+        int windOffsetX = 0;
+        int windOffsetY = -20; // bullet drop / gravity
+
+        System.out.println(windDirection);
+
+        switch(windDirection)
+        {
+            case "NORTH": windOffsetY -= (10 * wind.getValue()); break;
+            case "EAST": windOffsetX += (10 * wind.getValue()); break;
+            case "WEST": windOffsetX -= (10 * wind.getValue()); break;
+            default: windOffsetY += (10 * wind.getValue()); break;
+        }
+
         double offset = galtonBoard(0,10) * (wind.getValue() * 5);
 
-        Circle c = new Circle(pointer.getX()+ pointer.getFitWidth()/2 + offset, pointer.getY()+ pointer.getFitHeight()/2 + offset,7);
+        Circle c = new Circle(pointer.getX()+ pointer.getFitWidth()/2 + windOffsetX, pointer.getY()+ pointer.getFitHeight()/2 + windOffsetY,7);
         c.setStroke(Color.RED);
         bullets.add(c);
         panel.getChildren().add(c);
