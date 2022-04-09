@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -57,6 +60,8 @@ public class simulatorController implements Initializable{
     Button switchBtn;
     @FXML
     TextField nameInput;
+    @FXML
+    ImageView windArrow;
 
     String windDirection = "NORTH";
 
@@ -67,6 +72,7 @@ public class simulatorController implements Initializable{
     int shot = 0;
     int sumPoints = 0;
     List<Circle> bullets = new ArrayList<>();
+    RotateTransition rt;
 
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("table.fxml"));
     VBox table = fxmlLoader.load();
@@ -117,21 +123,29 @@ public class simulatorController implements Initializable{
     public String generateWindDirection()
     {
         int rng = (int) (Math.random() * 100);
-
         // 5% that wind changes
         if (rng > 5)
         {
             // DONT CHANGE WIND DIRECTION
             return windDirection;
         }
-
-        return switch ((int) (Math.random() * 4))
+        String direction = switch ((int) (Math.random() * 4))
                 {
                     case 0 -> "NORTH";
                     case 1 -> "EAST";
                     case 2 -> "WEST";
                     default -> "SOUTH";
                 };
+        rt = new RotateTransition(Duration.millis(500),windArrow);
+        switch (direction)
+        {
+            case "NORTH" -> rt.setToAngle(-90);
+            case "EAST" -> rt.setToAngle(0);
+            case "WEST" -> rt.setToAngle(-180);
+            default -> rt.setToAngle(90);
+        }
+        rt.play();
+        return direction;
     }
 
     public void shoot() {
@@ -140,7 +154,6 @@ public class simulatorController implements Initializable{
         int windOffsetX = 0;
         int windOffsetY = 20; // bullet drop / gravity
 
-        System.out.println(windDirection);
 
         switch(windDirection)
         {
@@ -224,7 +237,6 @@ public class simulatorController implements Initializable{
             panel.setOnMouseClicked(null);
             // show stats
             saveData();
-
             return;
         }
 
