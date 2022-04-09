@@ -115,16 +115,6 @@ public class simulatorController implements Initializable{
     }
 
     public void shoot(MouseEvent mouseEvent) {
-        if (gameEndedCheck())
-        {
-            // game has ended, disable shooting
-            pointer.setVisible(false);
-
-            // show stats
-
-            return;
-        }
-
         String windDirection = generateWindDirection();
 
         int windOffsetX = 0;
@@ -174,6 +164,16 @@ public class simulatorController implements Initializable{
         if (distance > 9 * oneCircleWidth && distance <= 10 * oneCircleWidth) updateTextArea(shot,1);
         else
             updateTextArea(shot,0);
+
+        if (gameEndedCheck())
+        {
+            // game has ended, disable shooting
+            pointer.setVisible(false);
+
+            // show stats
+
+            return;
+        }
 
     }
     private void updateTextArea(int shot, int points){

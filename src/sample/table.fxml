@@ -9,6 +9,6 @@
       <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
    </padding>
    <children>
-      <Text fx:id="shotsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Tabuľka" />
+      <Text fx:id="shotsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Výsledky" />
    </children>
 </VBox>
