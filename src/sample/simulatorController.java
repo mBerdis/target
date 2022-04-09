@@ -19,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class simulatorController implements Initializable{
     double xmysi,ymysi,xmysiFix,ymysiFix;
     Random rn=new Random();
     int shot = 0;
+    int sumPoints = 0;
     List<Circle> bullets = new ArrayList<>();
 
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("table.fxml"));
@@ -147,7 +150,7 @@ public class simulatorController implements Initializable{
             default: windOffsetY += (10 * wind.getValue()); break;
         }
 
-        double offset = galtonBoard(0,10) * (wind.getValue() * 5);
+        //double offset = galtonBoard(0,10) * (wind.getValue() * 5);
 
         Circle c = new Circle(pointer.getX()+ pointer.getFitWidth()/2 + windOffsetX, pointer.getY()+ pointer.getFitHeight()/2 + windOffsetY,7);
         c.setStroke(Color.RED);
@@ -160,25 +163,57 @@ public class simulatorController implements Initializable{
         double distance = Math.sqrt(Math.pow(stredX-c.getCenterX(),2) + Math.pow(stredY-c.getCenterY(),2));
         double oneCircleWidth = target.getFitWidth()/2/10;
 
-        if (distance <= oneCircleWidth) updateTextArea(shot,10);
+        if (distance <= oneCircleWidth)
+        {
+            updateTextArea(shot,10);
+            sumPoints += 10;
+        }
         else
-        if (distance > oneCircleWidth && distance <= 2 * oneCircleWidth) updateTextArea(shot,9);
+        if (distance > oneCircleWidth && distance <= 2 * oneCircleWidth)
+        {
+            updateTextArea(shot,9);
+            sumPoints += 9;
+        }
         else
-        if (distance > 2 * oneCircleWidth && distance <= 3 * oneCircleWidth) updateTextArea(shot,8);
+        if (distance > 2 * oneCircleWidth && distance <= 3 * oneCircleWidth) {
+            updateTextArea(shot,8);
+            sumPoints += 8;
+        }
         else
-        if (distance > 3 * oneCircleWidth && distance <= 4 * oneCircleWidth) updateTextArea(shot,7);
+        if (distance > 3 * oneCircleWidth && distance <= 4 * oneCircleWidth) {
+            updateTextArea(shot,7);
+            sumPoints += 7;
+        }
         else
-        if (distance > 4 * oneCircleWidth && distance <= 5 * oneCircleWidth) updateTextArea(shot,6);
+        if (distance > 4 * oneCircleWidth && distance <= 5 * oneCircleWidth) {
+            updateTextArea(shot,6);
+            sumPoints += 6;
+        }
         else
-        if (distance > 5 * oneCircleWidth && distance <= 6 * oneCircleWidth) updateTextArea(shot,5);
+        if (distance > 5 * oneCircleWidth && distance <= 6 * oneCircleWidth) {
+            updateTextArea(shot,5);
+            sumPoints += 5;
+        }
         else
-        if (distance > 6 * oneCircleWidth && distance <= 7 * oneCircleWidth) updateTextArea(shot,4);
+        if (distance > 6 * oneCircleWidth && distance <= 7 * oneCircleWidth) {
+            updateTextArea(shot,4);
+            sumPoints += 4;
+        }
         else
-        if (distance > 7 * oneCircleWidth && distance <= 8 * oneCircleWidth) updateTextArea(shot,3);
+        if (distance > 7 * oneCircleWidth && distance <= 8 * oneCircleWidth) {
+            updateTextArea(shot,3);
+            sumPoints += 3;
+        }
         else
-        if (distance > 8 * oneCircleWidth && distance <= 9 * oneCircleWidth) updateTextArea(shot,2);
+        if (distance > 8 * oneCircleWidth && distance <= 9 * oneCircleWidth) {
+            updateTextArea(shot,2);
+            sumPoints += 2;
+        }
         else
-        if (distance > 9 * oneCircleWidth && distance <= 10 * oneCircleWidth) updateTextArea(shot,1);
+        if (distance > 9 * oneCircleWidth && distance <= 10 * oneCircleWidth) {
+            updateTextArea(shot,1);
+            sumPoints += 1;
+        }
         else
             updateTextArea(shot,0);
 
@@ -188,10 +223,24 @@ public class simulatorController implements Initializable{
             pointer.setVisible(false);
             panel.setOnMouseClicked(null);
             // show stats
+            saveData();
 
             return;
         }
 
+    }
+
+    private void saveData()
+    {
+        float priemer = (float) sumPoints /  shot;
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("Stats.txt",true))) {
+            if (nameInput.getText().equals("")) writer.write("\nUnknown player;" + sumPoints + ";" + shot + ";" + priemer);
+            else writer.write("\n" + nameInput.getText() + ";" + sumPoints + ";" + shot + ";" + priemer);
+        }
+        catch(IOException e){   // Handle and print exception
+            System.out.println("There was an error, while writing to file: "+e.getMessage());
+        }
     }
 
     private void updateTextArea(int shot, int points){
