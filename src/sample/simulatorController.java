@@ -53,6 +53,8 @@ public class simulatorController implements Initializable{
     @FXML
     Button switchBtn;
 
+    String windDirection = "NORTH";
+
     AnchorPane clearPane;
     int perioda=0;
     double xmysi,ymysi,xmysiFix,ymysiFix;
@@ -94,6 +96,9 @@ public class simulatorController implements Initializable{
                     xmysi = xmysi + galtonBoard(0,10) * (tiredness.getValue()+1);
                     ymysi = ymysi + galtonBoard(0,10) * (tiredness.getValue()+1);
 
+                    // randomly change wind direction
+                    windDirection = generateWindDirection();
+
                 }
                 pointer.setX(pointer.getX()*0.95+xmysi*0.05);
                 pointer.setY(pointer.getY()*0.95+ymysi*0.05);
@@ -105,6 +110,15 @@ public class simulatorController implements Initializable{
 
     public String generateWindDirection()
     {
+        int rng = (int) (Math.random() * 100);
+
+        // 5% that wind changes
+        if (rng > 5)
+        {
+            // DONT CHANGE WIND DIRECTION
+            return windDirection;
+        }
+
         return switch ((int) (Math.random() * 4))
                 {
                     case 0 -> "NORTH";
@@ -118,7 +132,7 @@ public class simulatorController implements Initializable{
         String windDirection = generateWindDirection();
 
         int windOffsetX = 0;
-        int windOffsetY = -20; // bullet drop / gravity
+        int windOffsetY = 20; // bullet drop / gravity
 
         System.out.println(windDirection);
 
@@ -176,6 +190,7 @@ public class simulatorController implements Initializable{
         }
 
     }
+
     private void updateTextArea(int shot, int points){
         textarea.appendText(shot +". strela: " + points +" bodov \n");
     }
