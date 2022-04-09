@@ -1,23 +1,31 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class simulatorController implements Initializable{
     @FXML
     ImageView pointer;
     @FXML
@@ -32,6 +40,18 @@ public class Controller implements Initializable{
     ImageView target;
     @FXML
     TextArea textarea;
+    @FXML
+    Text tirednessText;
+    @FXML
+    Text windText;
+    @FXML
+    Text shotsText;
+    @FXML
+    BorderPane borderPane;
+    @FXML
+    VBox settings;
+    @FXML
+    Button switchBtn;
 
     AnchorPane clearPane;
     int perioda=0;
@@ -39,6 +59,11 @@ public class Controller implements Initializable{
     Random rn=new Random();
     int shot = 0;
     List<Circle> bullets = new ArrayList<>();
+
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("table.fxml"));
+    VBox table = fxmlLoader.load();
+
+    public simulatorController() throws IOException {}
 
     public int galtonBoard(int pozicia, int hladina){
         if (hladina==0) return pozicia;
@@ -152,5 +177,40 @@ public class Controller implements Initializable{
         {
             return false;
         }
+    }
+
+    public void updateTiredness(){
+        tirednessText.setText(String.valueOf((int) tiredness.getValue()));
+    }
+    public void updateWind(){
+        windText.setText(String.valueOf((int) wind.getValue()));
+    }
+    public void updateShots(){
+        shotsText.setText(String.valueOf((int) numberOfShots.getValue()));
+    }
+    public void switchToTable(){
+        borderPane.getChildren().remove(borderPane.getRight());
+        borderPane.setRight(table);
+        switchBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                switchToSettings();
+            }
+        });
+        switchBtn.setText("Nastavenia");
+    }
+    public void switchToSettings(){
+        borderPane.getChildren().remove(borderPane.getRight());
+        borderPane.setRight(settings);
+        switchBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                switchToTable();
+            }
+        });
+        switchBtn.setText("Tabuľka");
+
     }
 }
