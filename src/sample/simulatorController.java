@@ -247,7 +247,7 @@ public class simulatorController implements Initializable{
         float priemer = (float) sumPoints /  shot;
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("Stats.txt",true))) {
-            if (nameInput.getText().equals("")) writer.write("\nUnknown player;" + sumPoints + ";" + shot + ";" + priemer);
+            if (nameInput.getText().equals("")) writer.write("\nUnknown;" + sumPoints + ";" + shot + ";" + priemer);
             else writer.write("\n" + nameInput.getText() + ";" + sumPoints + ";" + shot + ";" + priemer);
         }
         catch(IOException e){   // Handle and print exception

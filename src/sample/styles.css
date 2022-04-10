@@ -55,3 +55,6 @@
     -fx-shape : " ";
     -fx-padding :0.0 0.15em;
 }
+.tableText{
+    -fx-font-weight: bold;
+}
