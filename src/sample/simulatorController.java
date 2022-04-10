@@ -256,7 +256,7 @@ public class simulatorController implements Initializable{
     }
 
     private void updateTextArea(int shot, int points){
-        textarea.appendText(shot +". strela: " + points +" bodov \n");
+        textarea.appendText(shot +". strela: " + points +"b\n");
     }
 
     public void reset()
@@ -282,14 +282,7 @@ public class simulatorController implements Initializable{
     {
         int allShots = (int) numberOfShots.getValue();
 
-        if (shot >= allShots)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return shot >= allShots;
     }
 
     public void updateTiredness(){
